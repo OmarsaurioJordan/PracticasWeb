@@ -1,0 +1,82 @@
+body {
+    background-color: rgb(10, 58, 131);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem;
+    padding: 1rem;
+    gap: 1rem;
+}
+
+h1, h2, h3 {
+    color: white;
+}
+
+.cajon {
+    background-color: rgb(108, 174, 231);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem;
+    padding: 1rem;
+    gap: 1rem;
+}
+
+table {
+    background-color: rgb(108, 174, 231);
+    border: 1px solid;
+}
+
+th, tr, td {
+    border: 1px solid;
+    padding: 5px;
+}
+
+button {
+    background-color: rgb(218, 218, 107);
+    padding: 10px;
+}
+button:hover {
+    background-color: rgb(164, 170, 72);
+}
+
+.danger {
+    background-color: rgb(218, 142, 107);
+    padding: 10px;
+}
+.danger:hover {
+    background-color: rgb(151, 79, 50);
+}
+
+.avatar {
+    font-size: 24px;
+    background-color: rgb(108, 174, 231);
+}
+
+footer, p {
+    color: white;
+
+}
+
+.lateral {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.examen {
+    background-color: rgb(108, 174, 231);
+    padding: 10px;
+    gap: 0.5rem;
+}
+
+.parrafo {
+    width: 50%;
+    white-space: normal;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}

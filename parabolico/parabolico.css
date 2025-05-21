@@ -1,0 +1,56 @@
+body {
+    background-color: rgb(14, 78, 14);
+    color: white;
+    font-family: Verdana, Tahoma, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1rem;
+}
+
+h1 {
+    align-content: center;
+}
+
+.rejilla {
+    display: grid;
+    grid-template-columns: repeat(64, 5px);
+    grid-template-rows: repeat(64, 5px);
+    gap: 1px;
+}
+
+.pix {
+    /* poner este color en el JS */
+    background-color: rgba(24, 221, 24, 0.5);
+    flex-shrink: 0;
+    margin: 0;
+    padding: 0;
+}
+
+.comps {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+button {
+    font-size: 18px;
+    background-color: rgb(174, 243, 45);
+    cursor: pointer;
+    transition: 0.2s
+}
+button:hover {
+    background-color: rgb(110, 168, 34);
+}
+
+input {
+    font-size: 18px;
+}
+
+a {
+    color: yellow;
+}
+a:active {
+    color: orange;
+}

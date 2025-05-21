@@ -1,0 +1,135 @@
+body {
+    font-family: sans-serif;
+    background-color: #378080;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    align-items: center;
+}
+
+.superior {
+    flex: 1;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+h1 {
+    color: white;
+    text-align: center;
+}
+
+select, textarea {
+    padding: 0.5rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+}
+
+.subtitulo {
+    color: white;
+    text-align: center;
+}
+
+.ok {
+    color: yellow;
+    text-align: center;
+}
+
+.error {
+    color: red;
+    text-align: center;
+}
+
+.piesito {
+    padding: 1rem;
+}
+
+.boton {
+    text-decoration: none;
+    padding: 0.5rem;
+    border: none;
+    background-color: #007baa;
+    color: white;
+    font-size: 20px;
+    text-align: center;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    transition: background-color 0.2s ease;
+}
+
+.boton:hover {
+    background-color: #0056b0;
+}
+
+.boton:disabled {
+    background-color: #4a5c5e;
+    cursor: not-allowed;
+    opacity: 0.75;
+}
+
+.contenedor {
+    background-color: rgb(148, 217, 226);
+    padding: 1.5rem;
+    margin: 1rem;
+    border-radius: 16px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+}
+
+.contenedor h2 {
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.contenedor label {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0.5rem;
+}
+
+.contenedor input {
+    padding: 0.5rem;
+    border: none;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+}
+
+.barra {
+    background-color: rgb(148, 217, 226);
+    padding: 0.5rem;
+    margin: 0.5rem;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    height: 100;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.barra h2 {
+    font-size: 20px;
+    text-align: center;
+    margin: 0.5rem;
+}
+
+.barra label {
+    font-weight: bold;
+    margin: 0.5rem;
+}
+
+.barra input {
+    padding: 0.5rem;
+    border: none;
+    border-radius: 8px;
+    margin: 0.5rem;
+}
+  
