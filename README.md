@@ -16,6 +16,8 @@ A continuación verá la lista de miniproyectos, con los indicativos (F) finaliz
 
 - (M) jueguin: ensayo de un mini juego básico en JS, incluye un ejemplito.php full comentado, donde se explica lo básico de un game engine para principiantes, luego el resto del software es una simulación de movimiento con monigotes, aún sin un popósito de gameplay claro, es un ensayo para luego hacer el museo virtual de avatares que quiero hacer.
 
+- (I) logic_simula: ejemplo canon de simulación 2D en JS, como para dar clases sobre ello o copiarlo como plantilla.
+
 - (M) paciente: entregable para la clase de PHP bajo la temática de POO, un simple registro de cita médica que se procesa en clases, tiene una DB aunque no está finalizado todo el CRUD, no era el objetivo de la tarea.
 
 - (F) parabolico: calcula con JS la trayectoria de un lanzamiento parabólico dados sus parámetros, y lo pinta usando una matrix de pequeños div a modo de display bi-tonal.

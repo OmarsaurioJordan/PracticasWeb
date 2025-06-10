@@ -36,17 +36,17 @@
 		imgs.push(document.getElementById("usr" + i));
 	}
 	const imgArbol = document.getElementById("arbol");
+	const suelo = document.getElementById("suelo");
 	// informacion del lienzo
 	const out = document.getElementById("output");
 	const cnv = document.getElementById("lienzo");
 	const ctx = cnv.getContext("2d");
 	const limx = cnv.width;
 	const limy = cnv.height;
-	const suelo = document.getElementById("suelo");
 	// para posicionar el mouse
 	let moux = 0;
 	let mouy = 0;
-	cnv.addEventListener("mousemove", function(event) {
+	cnv.addEventListener("mousemove", (event) => {
 		const rect = cnv.getBoundingClientRect();
 		moux = Math.floor(event.clientX - rect.left);
 		mouy = Math.floor(event.clientY - rect.top);
@@ -55,19 +55,21 @@
 	// comandos
 	let isMouse = false;
 	let isSpace = false;
-	cnv.addEventListener("mousedown", () => {
+	cnv.addEventListener("mousedown", (e) => {
+		if (e.button != 0) { return null; }
 		isMouse = true;
 		});
-	cnv.addEventListener("mouseup", () => {
+	cnv.addEventListener("mouseup", (e) => {
+		if (e.button != 0) { return null; }
 		isMouse = false;
 		});
 	document.addEventListener("keydown", (e) => {
-		if (e.code === "Space") {
+		if (e.code == "Space") {
 			isSpace = true;
 		}
 		});
 	document.addEventListener("keyup", (e) => {
-		if (e.code === "Space") {
+		if (e.code == "Space") {
 			isSpace = false;
 		}
 		});
