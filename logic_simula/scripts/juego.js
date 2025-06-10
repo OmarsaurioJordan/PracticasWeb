@@ -1,9 +1,12 @@
-// obtener informacion del lienzo y el mundo
+// obtener informacion del lienzo
 const canvas = document.getElementById("lienzo");
 const ctx = canvas.getContext("2d");
 const width = canvas.width;
 const height = canvas.height;
+
+// activar rutinas de lectura de comandos
 newMouseListener(canvas);
+newKeyboardListener();
 
 // estructuras de datos de la simulacion
 let objetos = []; // contiene todos los objetos del juego
@@ -13,6 +16,9 @@ objetos.push(new Player({
     x: width / 2,
     y: height / 2
 }));
+
+// crear unas rocas para test
+objetos.push(new Rock());
 
 // el main loop del juego
 let lastTime = 0;

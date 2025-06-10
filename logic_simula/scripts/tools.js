@@ -41,6 +41,28 @@ function pointInRectangle(pos, rec1, rec2) {
         pos.y > rec1.y && pos.y < rec2.y;
 }
 
+function magnitud(vect) {
+    return Math.sqrt(
+        Math.pow(vect.x, 2) + Math.pow(vect.y, 2)
+    );
+}
+
+function normalize(vect) {
+    let mag = magnitud(vect);
+    if (mag == 0) return vect;
+    return {
+        x: vect.x / mag,
+        y: vect.y / mag
+    };
+}
+
+function moveDirVel(pos, dir, vel) {
+    return {
+        x: pos.x + dir.x * vel,
+        y: pos.y + dir.y * vel
+    };
+}
+
 // comandos de teclado, deteccion de pulsaciones
 let keyData = {
     "w": false,
@@ -49,14 +71,15 @@ let keyData = {
     "d": false
 }
 
-window.addEventListener('keydown', (event) => {
-    if (event.key in keyData) {
-        keyData[event.key] = true;
-    }
-});
-
-window.addEventListener('keyup', (event) => {
-    if (event.key in keyData) {
-        keyData[event.key] = false;
-    }
-});
+function newKeyboardListener() {
+    window.addEventListener('keydown', (event) => {
+        if (event.key in keyData) {
+            keyData[event.key] = true;
+        }
+    });
+    window.addEventListener('keyup', (event) => {
+        if (event.key in keyData) {
+            keyData[event.key] = false;
+        }
+    });
+}
