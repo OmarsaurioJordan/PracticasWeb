@@ -1,6 +1,6 @@
 class Player extends Objeto {
-    static VELOCIDAD = 200;
-    static RADIO = 28;
+    static VELOCIDAD = 400;
+    static RADIO = 26;
 
     constructor(posicion) {
         super(posicion);
@@ -11,12 +11,13 @@ class Player extends Objeto {
     step(dlt) {
         if (this.vida != 0) {
             // moverse con teclas
-            let dir = this.getDirManejo();
+            let dir = modoMouse ?
+                this.getDirMouse() : this.getDirKeys();
             this.pos = moveDirVel(this.pos, dir,
                 Player.VELOCIDAD * dlt);
+            this.limites();
             // calcular colision
             let otro = this.isColision();
-            console.log(otro);
             if (otro !== null) {
                 this.vida--;
                 otro.destroy();
@@ -24,7 +25,7 @@ class Player extends Objeto {
         }
     }
 
-    getDirManejo() {
+    getDirKeys() {
         let dir = {x:0, y:0};
         if (keyData["w"]) dir.y--;
         if (keyData["s"]) dir.y++;
@@ -33,16 +34,30 @@ class Player extends Objeto {
         return normalize(dir);
     }
 
+    getDirMouse() {
+        if (pointDistance(this.pos, mouseData) < 4) {
+            return {x: 0, y: 0};
+        }
+        return pointDirection(this.pos, mouseData);
+    }
+
     isColision() {
-        objetos.forEach(obj => {
+        for (let obj of objetos) {
             if (obj != this) {
                 if (pointInCircle(this.pos, obj.pos,
                         Player.RADIO + Rock.RADIO)) {
                     return obj;
                 }
             }
-        });
+        }
         return null;
+    }
+
+    limites() {
+        this.pos.x = Math.max(Player.RADIO,
+            Math.min(width - Player.RADIO, this.pos.x));
+        this.pos.y = Math.max(Player.RADIO,
+            Math.min(height - Player.RADIO, this.pos.y));
     }
 
     draw() {

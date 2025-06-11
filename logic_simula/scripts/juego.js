@@ -8,17 +8,34 @@ const height = canvas.height;
 newMouseListener(canvas);
 newKeyboardListener();
 
+// lectura de comandos desde HTML
+let modoMouse = document.getElementById("modoMouse").checked;
+document.getElementById("modoMouse").addEventListener("change", (event) => {
+    modoMouse = event.target.checked;
+    console.log(modoMouse);
+    
+    document.getElementById("restart").href = modoMouse ?
+        "index.php?modoMouse=1" : "index.php";
+});
+
 // estructuras de datos de la simulacion
 let objetos = []; // contiene todos los objetos del juego
+let puntaje = 0; // segundos sobreviviendo
+let respawn_rock = {
+    reloj: 0, // segundos para crear nuevo Rock
+    espera: 4
+};
 
-// crear al player
+// crear al Player
 objetos.push(new Player({
     x: width / 2,
     y: height / 2
 }));
 
-// crear unas rocas para test
-objetos.push(new Rock());
+// crear las Rock iniciales
+for (let i = 0; i < 10; i++) {
+    objetos.push(new Rock());
+}
 
 // el main loop del juego
 let lastTime = 0;
@@ -37,6 +54,23 @@ function loop(currentTime) {
 function step(dlt) {
     // ejecutar la logica de cada objeto
     objetos.forEach(obj => obj.step(dlt));
+    // 
+    for (let obj of objetos) {
+        if (obj instanceof Player) {
+            if (obj.vida != 0) {
+                // conteo de puntos
+                puntaje += dlt;
+                // hacer aparecer mas Rock enemigos
+                respawn_rock.reloj -= dlt;
+                if (respawn_rock.reloj <= 0) {
+                    respawn_rock.reloj += respawn_rock.espera +
+                        Math.random();
+                    objetos.push(new Rock());
+                }
+            }
+            break;
+        }
+    }
 }
 
 // se dibuja todo
@@ -48,6 +82,8 @@ function draw() {
     // dibujar todos los objetos
     objetos.forEach(obj => obj.draw());
     // dibujar la interfaz grafica
+    Sprites.drawTexto(ctx, Math.floor(puntaje),
+        {x: width / 2, y: 0});
 }
 
 // iniciar el loop cuando los sprites carguen

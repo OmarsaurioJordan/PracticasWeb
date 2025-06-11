@@ -1,3 +1,7 @@
+<?php
+	$modoMouse = isset($_GET['modoMouse']) ? " checked" : "";
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 	<head>
@@ -13,13 +17,22 @@
 				justify-content: center;
 				align-items: center;
 			}
+			a {
+				color:rgb(217, 228, 65);
+				text-decoration: none;
+			}
 		</style>
-		<title>Título</title>
+		<title>Logic Game</title>
 	</head>
 	<body>
-		<h1>Título</h1>
+		<h1>Logic Game</h1>
+		<div>
+			<input type="checkbox" id="modoMouse" <?php echo $modoMouse; ?>>
+			<label for="modoMouse"> modo Mouse, sino W,A,S,D<br>.</label>
+		</div>
 		<canvas id="lienzo" width="1000" height="700"
 			style="border:1px solid black;"></canvas>
+		<h3>by Omwekiatl 2025 <a href="" id="restart">(Restart)</a></h3>
 	</body>
 	<script src="scripts/tools.js" defer></script>
 	<script src="scripts/Sprites.js" defer></script>

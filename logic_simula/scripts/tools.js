@@ -21,48 +21,6 @@ function newMouseListener(miCanvas) {
     });
 }
 
-// funciones para calculos vectoriales
-
-function pointDistance(pos1, pos2) {
-    let dif = [
-        Math.pow(pos1.x - pos2.x, 2),
-        Math.pow(pos1.y - pos2.y, 2),
-    ];
-    return Math.sqrt(dif[0] + dif[1]);
-}
-
-function pointInCircle(pos1, pos2, radio) {
-    let dist = pointDistance(pos1, pos2);
-    return dist < radio;
-}
-
-function pointInRectangle(pos, rec1, rec2) {
-    return pos.x > rec1.x && pos.x < rec2.x &&
-        pos.y > rec1.y && pos.y < rec2.y;
-}
-
-function magnitud(vect) {
-    return Math.sqrt(
-        Math.pow(vect.x, 2) + Math.pow(vect.y, 2)
-    );
-}
-
-function normalize(vect) {
-    let mag = magnitud(vect);
-    if (mag == 0) return vect;
-    return {
-        x: vect.x / mag,
-        y: vect.y / mag
-    };
-}
-
-function moveDirVel(pos, dir, vel) {
-    return {
-        x: pos.x + dir.x * vel,
-        y: pos.y + dir.y * vel
-    };
-}
-
 // comandos de teclado, deteccion de pulsaciones
 let keyData = {
     "w": false,
@@ -82,4 +40,69 @@ function newKeyboardListener() {
             keyData[event.key] = false;
         }
     });
+}
+
+// funciones para calculos vectoriales
+
+function angulo(vect) {
+    return Math.atan2(vect.y, vect.x);
+}
+
+function magnitud(vect) {
+    return Math.sqrt(
+        Math.pow(vect.x, 2) + Math.pow(vect.y, 2));
+}
+
+function normalize(vect) {
+    let mag = magnitud(vect);
+    if (mag == 0) return vect;
+    return {
+        x: vect.x / mag,
+        y: vect.y / mag
+    };
+}
+
+function pointDirection(pos1, pos2) {
+    return normalize({
+        x: pos2.x - pos1.x,
+        y: pos2.y - pos1.y
+    });
+}
+
+function pointAngle(pos1, pos2) {
+    return angulo({
+        x: pos2.x - pos1.x,
+        y: pos2.y - pos1.y
+    });
+}
+
+function pointDistance(pos1, pos2) {
+    return magnitud({
+        x: pos2.x - pos1.x,
+        y: pos2.y - pos1.y
+    });
+}
+
+function pointInCircle(pos1, pos2, radio) {
+    let dist = pointDistance(pos1, pos2);
+    return dist < radio;
+}
+
+function pointInRectangle(pos, rec1, rec2) {
+    return pos.x > rec1.x && pos.x < rec2.x &&
+        pos.y > rec1.y && pos.y < rec2.y;
+}
+
+function moveDirVel(pos, dir, vel) {
+    return {
+        x: pos.x + vel * dir.x,
+        y: pos.y + vel * dir.y
+    };
+}
+
+function moveAngVel(pos, angRad, vel) {
+    return {
+        x: pos.x + vel * Math.cos(angRad),
+        y: pos.y + vel * Math.sin(angRad)
+    };
 }

@@ -58,9 +58,10 @@ class Sprites {
     }
 
     static drawTexto(ctx, texto, posicion) {
-        ctx.font = "16px 'Georgia', 'Times New Roman'";
+        ctx.font = "32px 'Georgia', 'Times New Roman'";
         ctx.textAlign = "center"; // left, center, right
-        ctx.textBaseline = "bottom"; // top, middle, bottom
+        ctx.textBaseline = "top"; // top, middle, bottom
+        ctx.fillStyle = "red";
         ctx.fillText(texto, posicion.x, posicion.y);
     }
 }
