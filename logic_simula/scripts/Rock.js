@@ -22,13 +22,9 @@ class Rock extends Objeto {
     reiniciar() {
         this.posBordesAzar();
         this.relojInicia = Rock.RELOJ_INICIA;
-        for (let obj of objetos) {
-            if (obj instanceof Player) {
-                this.anguloRad = pointAngle(this.pos, obj.pos) +
-                    (Math.random() * 2 - 1) * Rock.ARCO_AZAR_RAD;
-                break;
-            }
-        }
+        let ply = objetos.filter(obj => obj instanceof Player)[0];
+        this.anguloRad = pointAngle(this.pos, ply.pos) +
+            (Math.random() * 2 - 1) * Rock.ARCO_AZAR_RAD;
     }
 
     posBordesAzar() {
@@ -40,6 +36,10 @@ class Rock extends Objeto {
             this.pos.x = Math.random() < 0.5 ? 0 : width;
             this.pos.y = Math.random() * height;
         }
+    }
+
+    getActivo() {
+        return this.relojInicia == 0;
     }
 
     step(dlt) {
@@ -59,10 +59,6 @@ class Rock extends Objeto {
                 this.sndTiro.play();
             }
         }
-    }
-
-    getActivo() {
-        return this.relojInicia == 0;
     }
 
     stepAnima(dlt) {

@@ -4,6 +4,16 @@ const ctx = canvas.getContext("2d");
 const width = canvas.width;
 const height = canvas.height;
 
+// lectura de comandos desde HTML
+let modoMouse = document.getElementById("modoMouse").checked;
+document.getElementById("modoMouse").addEventListener("change", (event) => {
+    modoMouse = event.target.checked;
+    console.log(modoMouse);
+    
+    document.getElementById("restart").href = modoMouse ?
+        "index.php?modoMouse=1" : "index.php";
+});
+
 // activar rutinas de lectura de comandos
 newMouseListener(canvas);
 newKeyboardListener();
@@ -24,16 +34,6 @@ function miMusica() {
         setTimeout(miMusica, 20);
     }
 }
-
-// lectura de comandos desde HTML
-let modoMouse = document.getElementById("modoMouse").checked;
-document.getElementById("modoMouse").addEventListener("change", (event) => {
-    modoMouse = event.target.checked;
-    console.log(modoMouse);
-    
-    document.getElementById("restart").href = modoMouse ?
-        "index.php?modoMouse=1" : "index.php";
-});
 
 // estructuras de datos de la simulacion
 let objetos = []; // contiene todos los objetos del juego

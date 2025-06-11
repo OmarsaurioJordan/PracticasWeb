@@ -28,33 +28,25 @@ class Sprites {
     }
 
     drawSprite(ctx, posicion, spritename, subimg) {
-        this.sprites.forEach(spr => {
-            if (spr.name == spritename) {
-                ctx.drawImage(spr.imagen, // sprite
-                    subimg * spr.width, 0, // pos sprite
-                    spr.width, spr.height, // talla sprite
-                    posicion.x - spr.width / 2, // posicion
-                    posicion.y - spr.height / 2,
-                    spr.width, spr.height); // escala
-                return null; // break foreach
-            }
-        });
+        let spr = this.sprites.filter(s => s.name == spritename)[0];
+        ctx.drawImage(spr.imagen, // sprite
+            subimg * spr.width, 0, // pos sprite
+            spr.width, spr.height, // talla sprite
+            posicion.x - spr.width / 2, // posicion
+            posicion.y - spr.height / 2,
+            spr.width, spr.height); // escala
     }
 
     drawTiled(ctx, spritename, widthMax, heightMax) {
-        this.sprites.forEach(spr => {
-            if (spr.name == spritename) {
-                let wMax = Math.ceil(widthMax / spr.width);
-                let hMax = Math.ceil(heightMax / spr.height);
-                for (let w = 0; w < wMax; w++) {
-                    for (let h = 0; h < hMax; h++) {
-                        ctx.drawImage(spr.imagen, // sprite
-                            w * spr.width, h * spr.height); // posicion
-                    }
-                }
-                return null; // break foreach
+        let spr = this.sprites.filter(s => s.name == spritename)[0];
+        let wMax = Math.ceil(widthMax / spr.width);
+        let hMax = Math.ceil(heightMax / spr.height);
+        for (let w = 0; w < wMax; w++) {
+            for (let h = 0; h < hMax; h++) {
+                ctx.drawImage(spr.imagen, // sprite
+                    w * spr.width, h * spr.height); // posicion
             }
-        });
+        }
     }
 
     static drawTexto(ctx, texto, posicion) {
