@@ -8,6 +8,23 @@ const height = canvas.height;
 newMouseListener(canvas);
 newKeyboardListener();
 
+// poner musica de fondo
+const musica = new Audio("sounds/musica.wav");
+musica.volume = 0.333;
+musica.loop = true;
+musica.addEventListener("canplaythrough", () => {
+    setTimeout(miMusica, 20);
+});
+function miMusica() {
+    let tecla = Object.values(keyData).some(key => key);
+    if (mouseData.pulsado || tecla) {
+        musica.play();
+    }
+    else {
+        setTimeout(miMusica, 20);
+    }
+}
+
 // lectura de comandos desde HTML
 let modoMouse = document.getElementById("modoMouse").checked;
 document.getElementById("modoMouse").addEventListener("change", (event) => {
@@ -54,21 +71,17 @@ function loop(currentTime) {
 function step(dlt) {
     // ejecutar la logica de cada objeto
     objetos.forEach(obj => obj.step(dlt));
-    // 
-    for (let obj of objetos) {
-        if (obj instanceof Player) {
-            if (obj.vida != 0) {
-                // conteo de puntos
-                puntaje += dlt;
-                // hacer aparecer mas Rock enemigos
-                respawn_rock.reloj -= dlt;
-                if (respawn_rock.reloj <= 0) {
-                    respawn_rock.reloj += respawn_rock.espera +
-                        Math.random();
-                    objetos.push(new Rock());
-                }
-            }
-            break;
+    // obtener al objeto Player y ver si vive
+    let ply = objetos.filter(obj => obj instanceof Player)[0];
+    if (ply.vida != 0) {
+        // conteo de puntos
+        puntaje += dlt;
+        // hacer aparecer mas Rock enemigos
+        respawn_rock.reloj -= dlt;
+        if (respawn_rock.reloj <= 0) {
+            respawn_rock.reloj += respawn_rock.espera +
+                Math.random();
+            objetos.push(new Rock());
         }
     }
 }

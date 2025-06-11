@@ -6,6 +6,21 @@ class Player extends Objeto {
         super(posicion);
         this.depth = 1;
         this.vida = 4;
+        this.sndGolpe = new Audio("sounds/golpe.wav");
+        this.sndFinal = new Audio("sounds/final.wav");
+    }
+
+    sonar() {
+        if (this.vida == 0) {
+            this.sndGolpe.pause();
+            this.sndFinal.currentTime = 0;
+            this.sndFinal.play();
+        }
+        else {
+            this.sndFinal.pause();
+            this.sndGolpe.currentTime = 0;
+            this.sndGolpe.play();
+        }
     }
 
     step(dlt) {
@@ -20,6 +35,7 @@ class Player extends Objeto {
             let otro = this.isColision();
             if (otro !== null) {
                 this.vida--;
+                this.sonar();
                 otro.destroy();
             }
         }
@@ -43,11 +59,11 @@ class Player extends Objeto {
 
     isColision() {
         for (let obj of objetos) {
-            if (obj != this) {
-                if (pointInCircle(this.pos, obj.pos,
-                        Player.RADIO + Rock.RADIO)) {
-                    return obj;
-                }
+            if (obj == this) { continue; }
+            if (!obj.getActivo()) { continue; }
+            if (pointInCircle(this.pos, obj.pos,
+                    Player.RADIO + Rock.RADIO)) {
+                return obj;
             }
         }
         return null;

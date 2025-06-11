@@ -16,6 +16,7 @@ class Rock extends Objeto {
         }
         this.reiniciar();
         this.relojInicia = Math.random() * Rock.RELOJ_INICIA;
+        this.sndTiro = new Audio("sounds/tiro.wav");
     }
 
     reiniciar() {
@@ -43,7 +44,7 @@ class Rock extends Objeto {
 
     step(dlt) {
         this.stepAnima(dlt);
-        if (this.relojInicia == 0) {
+        if (this.getActivo()) {
             this.pos = moveAngVel(this.pos,
                 this.anguloRad, Rock.VELOCIDAD * dlt);
             if (!pointInRectangle(this.pos,
@@ -53,7 +54,15 @@ class Rock extends Objeto {
         }
         else {
             this.relojInicia = Math.max(0, this.relojInicia - dlt);
+            if (this.relojInicia == 0) {
+                this.sndTiro.currentTime = 0;
+                this.sndTiro.play();
+            }
         }
+    }
+
+    getActivo() {
+        return this.relojInicia == 0;
     }
 
     stepAnima(dlt) {
