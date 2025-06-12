@@ -8,8 +8,6 @@ const height = canvas.height;
 let modoMouse = document.getElementById("modoMouse").checked;
 document.getElementById("modoMouse").addEventListener("change", (event) => {
     modoMouse = event.target.checked;
-    console.log(modoMouse);
-    
     document.getElementById("restart").href = modoMouse ?
         "index.php?modoMouse=1" : "index.php";
 });
@@ -60,6 +58,7 @@ function loop(currentTime) {
     let dlt = (currentTime - lastTime) / 1000;
     lastTime = currentTime;
     if (!Number.isFinite(dlt)) dlt = 0;
+    dlt = Math.min(dlt, 0.1);
     // ejecutar todo usando el delta de tiempo
     step(dlt);
     draw();
