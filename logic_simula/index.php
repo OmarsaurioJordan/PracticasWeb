@@ -36,7 +36,7 @@
 	</body>
 	<script src="scripts/tools.js" defer></script>
 	<script src="scripts/Sprites.js" defer></script>
-	<script src="scripts/Objeto.js" defer></script>
+	<script src="scripts/Ente.js" defer></script>
 	<script src="scripts/Player.js" defer></script>
 	<script src="scripts/Rock.js" defer></script>
 	<script src="scripts/juego.js" defer></script>

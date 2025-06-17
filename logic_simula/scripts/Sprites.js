@@ -2,11 +2,7 @@ class Sprites {
 
     constructor() {
         this.cargas = 0;
-        this.sprites = [
-            this.loadImg("player", 64, 64),
-            this.loadImg("rock", 64, 64),
-            this.loadImg("fondo", 96, 96)
-        ];
+        this.sprites = [];
     }
 
     loadImg(filename, width, height) {
@@ -15,12 +11,12 @@ class Sprites {
         img.onload = () => {
             this.cargas += 1;
         };
-        return {
+        this.sprites.push({
             name: filename,
             imagen: img,
             width: width,
             height: height
-        };
+        });
     }
 
     getReady() {

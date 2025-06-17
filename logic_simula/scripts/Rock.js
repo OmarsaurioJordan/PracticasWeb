@@ -1,4 +1,4 @@
-class Rock extends Objeto {
+class Rock extends Ente {
     static VELOCIDAD = 300;
     static RADIO = 10;
     static RELOJ_INICIA = 2;

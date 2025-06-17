@@ -1,5 +1,5 @@
 // pulsacion de mouse
-let mouseData = {
+const mouseData = {
     x: 0, // posicion en el lienzo, sin afectarse por escalamiento ni mov
     y: 0,
     pulsado: false, // true el clic izquierdo esta apretado
@@ -22,7 +22,7 @@ function newMouseListener(miCanvas) {
 }
 
 // comandos de teclado, deteccion de pulsaciones
-let keyData = {
+const keyData = {
     "w": false,
     "s": false,
     "a": false,

@@ -1,4 +1,4 @@
-class Player extends Objeto {
+class Player extends Ente {
     static VELOCIDAD = 400;
     static RADIO = 26;
 

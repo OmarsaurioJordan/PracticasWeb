@@ -5,7 +5,7 @@ const width = canvas.width;
 const height = canvas.height;
 
 // lectura de comandos desde HTML
-let modoMouse = document.getElementById("modoMouse").checked;
+var modoMouse = document.getElementById("modoMouse").checked;
 document.getElementById("modoMouse").addEventListener("change", (event) => {
     modoMouse = event.target.checked;
     document.getElementById("restart").href = modoMouse ?
@@ -34,9 +34,9 @@ function miMusica() {
 }
 
 // estructuras de datos de la simulacion
-let objetos = []; // contiene todos los objetos del juego
-let puntaje = 0; // segundos sobreviviendo
-let respawn_rock = {
+const objetos = []; // contiene todos los objetos del juego
+var puntaje = 0; // segundos sobreviviendo
+const respawn_rock = {
     reloj: 0, // segundos para crear nuevo Rock
     espera: 4
 };
@@ -53,7 +53,7 @@ for (let i = 0; i < 10; i++) {
 }
 
 // el main loop del juego
-let lastTime = 0;
+var lastTime = 0;
 function loop(currentTime) {
     let dlt = (currentTime - lastTime) / 1000;
     lastTime = currentTime;
@@ -100,6 +100,9 @@ function draw() {
 
 // iniciar el loop cuando los sprites carguen
 const sprites = new Sprites();
+sprites.loadImg("player", 64, 64);
+sprites.loadImg("rock", 64, 64);
+sprites.loadImg("fondo", 96, 96);
 setTimeout(arranque, 100);
 function arranque() {
     if (sprites.getReady()) {

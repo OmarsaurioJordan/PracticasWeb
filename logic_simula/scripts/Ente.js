@@ -1,4 +1,4 @@
-class Objeto {
+class Ente {
     constructor(posicion) {
         this.pos = {...posicion};
         this.depth = 0;
