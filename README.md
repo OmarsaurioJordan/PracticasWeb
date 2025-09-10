@@ -28,6 +28,8 @@ A continuación verá la lista de miniproyectos, con los indicativos (F) finaliz
 
 - (M) quizes: varios miniproyectos que parten de una clase Quiz en PHP que automatiza la creación de encuestas con formularios, permitiéndo enfocarse en lo primordial que es escribir las preguntas, se automatiza también la obtención de resultados y nota. Hay un archivo ejemplo.php que demuestra las capacidades de la clase Quiz.
 
+- (F) scripts_js: simples scripts JS mezclados con HTML y PHP, parte de las prácticas de JS hechas en la institución.
+
 - (I) social: incluye dos cosas: un forms con emoticones que pretende contener toda la información básica que descibe a un usuario, una versión minimalista de esto se podría usar para el museo de avatares que pretendo hacer luego. Y un listado de aspectos a los que alguien puede mostrar agrado o desagrado en la vida, por ahora solo es un forms, se planea hacer que se cree un perfil con ello y buscar match por proximidad.
 
 - (F) tablerito: demostración de matrix paramétrica en PHP con un punto móvil con WASD, como si fuese el inicio de un minijuego, tiene dos versiónes, la que explica lo básico y una con NPCs móviles y captura, aunque se aclara que el comportamiento allí descrito se debería hacer en JS, la práctia era de PHP.
