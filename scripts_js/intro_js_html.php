@@ -44,12 +44,14 @@
         <div>
             <h2>Registro</h2>
             <div>
+                <label id="timer">0</label><br><br>
                 <input id="nombre" name="nombre" type="text" placeholder="Nombre"><br><br>
                 <input id="generoM" name="genero" type="radio" value="M" checked>
                 <label for="generoM">M</label>
                 <input id="generoF" name="genero" type="radio" value="F">
                 <label for="generoF">F</label><br><br>
-                <input id="edad" name="edad" type="number" placeholder="Año nacimiento" min="1900"><br><br>
+                <input id="edad" name="edad" type="number" placeholder="Año nacimiento" min="1900">
+                <label id="adultez"></label><br><br>
                 <select id="nacion" name="nacion">
                     <option value="CO" selected>Colombian</option>
                     <option value="VE">Venezolan</option>
@@ -57,6 +59,8 @@
                     <option value="X">Otra</option>
                 </select><br><br>
                 <input id="saldo" name="saldo" type="number" placeholder="$ Saldo" step="1000"><br><br>
+                <textarea id="descripcion" rows="3" cols="50" placeholder="Descripción"></textarea><br>
+                <label id="descri_info">0 chars</label><br><br>
                 <button onclick="procesar()">Registrar</button><br><br>
                 <div class="msj" id="msj1"></div>
             </div>
@@ -134,6 +138,31 @@
         <p>Omwekiatl - SENA - 2025</p>
     </footer>
     <script>
+        document.getElementById("nombre").addEventListener("input", () => {
+            let nombre_element = document.getElementById("nombre");
+            nombre_element.value = nombre_element.value.toUpperCase();
+        });
+
+        document.getElementById("edad").addEventListener("input", () => {
+            let year = new Date().getFullYear();
+            let edad = year - Number(document.getElementById("edad").value);
+            let msjage = edad < 18 ? "Menor" : (edad > 65 ? "Viejo" : "");
+            document.getElementById("adultez").innerHTML = msjage;
+        });
+
+        document.getElementById("descripcion").addEventListener("input", () => {
+            let descri_element = document.getElementById("descripcion");
+            let descri_length = descri_element.value.length;
+            let the_color = descri_length > 100 ? 'orange' : '';
+            descri_element.style.backgroundColor = the_color;
+            document.getElementById('descri_info').innerHTML = descri_length + " chars";
+        });
+
+        setInterval(() => {
+            let timer = document.getElementById("timer");
+            timer.innerHTML = parseInt(timer.innerHTML) + 1;
+        }, 1000);
+
         document.getElementById("edad").max = new Date().getFullYear() - 1;
 
         // variables de uso global
@@ -197,7 +226,7 @@
             // calcular categoria segun edad
             valor = document.createElement("td");
             if (edad <= 12) {
-                valor.innerHTML = "Niño";
+                valor.innerHTML = "Menor";
                 categorias.push(0);
             }
             else if (edad <= 29) {
@@ -280,23 +309,13 @@
                 "<br>( " + nombres[ind_max] + ")";
             document.getElementById("std_minimo").innerHTML = "$ " + saldos[ind_min] +
                 "<br>( " + nombres[ind_min] + ")";
-            let cat_names = ["Niños", "Jóvenes", "Adultos", "Viejos"];
+            let cat_names = ["Menores", "Jóvenes", "Adultos", "Viejos"];
             let std_cat = document.getElementById("std_categorias");
             std_cat.innerHTML = "";
             for (let i = 0; i < tot_cat.length; i++) {
                 sum_cat[i] = sum_cat[i] / Math.max(1, tot_cat[i]);
                 std_cat.innerHTML += "<p>" + cat_names[i] + ": </p><p>$ " + sum_cat[i] + "</p>";
             }
-
-            /*
-            Objetivos del Ejercicio:
-            1. dados varios números, distinguir si son positivos, negativos, cero y hacer conteos
-            2. identificar qué usuarios pueden votar según edad y nacionalidad, cuántos y quiénes son
-            3. mostrar números negativos en formato positivo
-            4. dados varios números hallar promedio, max y min, y decir a qué usuario pertenecen
-            5. compradores pagan con descuento según sorteo (3 posibilidades), obtener total pagado con / sin descuento.
-            6. hallar promedios de peso de usuarios categorizados según: niños, jóvenes, adultos y viejos
-            */
         }
 
         // variables globales para pagos
@@ -357,5 +376,26 @@
             // agregar el registro a la tabla
             tabla.appendChild(fila);
         }
+    
+    /*
+    Objetivos del Ejercicio:
+    1. dados varios números, distinguir si son positivos, negativos, cero y hacer conteos
+    2. identificar qué usuarios pueden votar según edad y nacionalidad, cuántos y quiénes son
+    3. mostrar números negativos en formato positivo
+    4. dados varios números hallar promedio, max y min, y decir a qué usuario pertenecen
+    5. compradores pagan con descuento según sorteo (3 posibilidades), obtener total pagado con / sin descuento.
+    6. hallar promedios de peso de usuarios categorizados según: menores, jóvenes, adultos y viejos
+    7. poner las letras de un input text en mayúsculas en tiempo real
+    8. contar caracteres en tiempo real de una descripción ingresada por el usuario, poner a rojo si pasa un límite
+    9. indicador de edad, para verificar adultez, al ingresar la edad, resultado en tiempo real
+    10. temporizador, no se hizo reinicio de página para no perder los registros locales
+    ...
+    Por Implementar:
+    11. selección aleatoria y radio buttons, para confirmar que es un humano pensante
+    ...
+    Nota:
+    varios objetivos se han modificado para adaptarse a una misma solución software, cumpliendo con las funcionalidades de trasfondo
+    */
     </script>
 </body>
+</html>
