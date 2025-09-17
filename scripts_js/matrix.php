@@ -14,8 +14,28 @@
             margin: 0;
         }
         main {
-            flex: 1;
-            font-size: 32px;
+            font-size: 26px;
+        }
+        input, button {
+            font-size: 20px;
+        }
+        button:hover {
+            background-color: green;
+            color: white;
+            cursor: pointer;
+        }
+        .horizontal {
+            font-size: 24px;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            justify-content: space-around;
+        }
+        .matrix {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            justify-content: space-around;
         }
     </style>
 </head>
@@ -24,33 +44,87 @@
         <h1>Matrix</h1>
     </header>
     <main>
-        <div id="matrix"></div>
+        <div class="horizontal">
+            <div>
+                <label>Width</label><br>
+                <input type="number" id="width" min="1" max="1000" step="1">
+            </div>
+            <div>
+                <label>Height</label><br>
+                <input type="number" id="height" min="1" max="1000" step="1">
+            </div>
+            <div>
+                <label>Ones %</label><br>
+                <input type="number" id="ones" min="0" max="100" step="1">
+            </div>
+            <div>
+                <label>Change %</label><br>
+                <input type="number" id="change" min="0" max="100" step="1">
+            </div>
+            <div>
+                <label>Speed ms</label><br>
+                <input type="number" id="speed" min="1" max="1000" step="1">
+            </div>
+            <button onclick="start()">Generate</button>
+        </div>
+        <div class="matrix" id="matrix"></div>
     </main>
     <footer>
         <p>Omwekiatl - SENA - 2025</p>
     </footer>
     <script>
-        let width = 200;
-        let height = 20;
-        let matrix = document.getElementById("matrix");
-        let labels = []
-        for (let x = 0; x < width; x++) {
-            let label = document.createElement('label');
-            for (let y = 0; y < height; y++) {
-                label.innerHTML += "0\n";
+        // configuracion
+        let width = 50;
+        let height = 25;
+        let prob_ones = 0.25;
+        let prob_change = 0.75;
+        let speed_ms = 150;
+        // cargar valores por defecto
+        document.getElementById("width").value = width;
+        document.getElementById("height").value = height;
+        document.getElementById("ones").value = prob_ones * 100;
+        document.getElementById("change").value = prob_change * 100;
+        document.getElementById("speed").value = speed_ms;
+        // generacion de la matrix
+        let labels = [];
+        let engine = null;
+        function start() {
+            let matrix = document.getElementById("matrix");
+            // cargar datos de los inputs
+            width = document.getElementById("width").value;
+            height = document.getElementById("height").value;
+            prob_ones = document.getElementById("ones").value / 100;
+            prob_change = document.getElementById("change").value / 100;
+            speed_ms = document.getElementById("speed").value;
+            // eliminar matrix anterior
+            labels.forEach(label => label.remove());
+            labels = [];
+            if (engine !== null) {
+                clearInterval(engine);
             }
-            labels.push(label);
-            matrix.appendChild(label);
+            // crear matrix nueva
+            for (let x = 0; x < width; x++) {
+                let label = document.createElement('label');
+                for (let y = 0; y < height; y++) {
+                    label.innerHTML += "0<br>";
+                }
+                labels.push(label);
+                matrix.appendChild(label);
+            }
+            engine = setInterval(run, speed_ms);
         }
-        setInterval(() => {
+        // animacion ciclica
+        function run() {
             labels.forEach(label => {
-                if (Math.random() < 0.5) {
-                    let bit = Math.random() < 0.25 ? "1\n" : "0\n";
+                if (Math.random() < prob_change) {
+                    let bit = Math.random() < prob_ones ? "1<br>" : "0<br>";
                     let bits = bit + label.innerHTML;
-                    label.innerHTML = bits.substring(0, height * 2);
+                    label.innerHTML = bits.substring(0, height * 5);
                 }
             });
-        }, 150);
+        }
+        // iniciar automaticamente
+        start();
     </script>
 </body>
 </html>
