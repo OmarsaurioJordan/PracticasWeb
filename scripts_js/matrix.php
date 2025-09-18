@@ -73,6 +73,7 @@
         <p>Omwekiatl - SENA - 2025</p>
     </footer>
     <script>
+		// https://omwekiatl.xyz/matrix.php
         // configuracion
         let width = 50;
         let height = 25;

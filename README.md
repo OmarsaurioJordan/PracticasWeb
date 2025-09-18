@@ -28,6 +28,8 @@ A continuación verá la lista de miniproyectos, con los indicativos (F) finaliz
 
 - (M) quizes: varios miniproyectos que parten de una clase Quiz en PHP que automatiza la creación de encuestas con formularios, permitiéndo enfocarse en lo primordial que es escribir las preguntas, se automatiza también la obtención de resultados y nota. Hay un archivo ejemplo.php que demuestra las capacidades de la clase Quiz.
 
+- (F) Salita: practica de AJAX con Fetch, sincronización de avatares móviles en JS, los usuarios ingresan su avatar y puedne moverse en el mismo canva.
+
 - (F) scripts_js: simples scripts JS mezclados con HTML y PHP, parte de las prácticas de JS hechas en la institución.
 
 - (I) social: incluye dos cosas: un forms con emoticones que pretende contener toda la información básica que descibe a un usuario, una versión minimalista de esto se podría usar para el museo de avatares que pretendo hacer luego. Y un listado de aspectos a los que alguien puede mostrar agrado o desagrado en la vida, por ahora solo es un forms, se planea hacer que se cree un perfil con ello y buscar match por proximidad.

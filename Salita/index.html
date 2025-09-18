@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<style>
+			body {
+				background-color:rgb(33, 38, 59);
+				color: white;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+			}
+			input, button, option, select, .login {
+				font-size: 16px;
+				text-align: center;
+				padding: 3px;
+			}
+			button:hover {
+				cursor: pointer;
+				background-color: yellow;
+			}
+		</style>
+		<title>Salita</title>
+	</head>
+	<body>
+		<h1>Salita</h1>
+		<div class="login" id="login">
+			<input type="text" id="nombre" maxlength="12" placeholder="Nombre">
+			<select id="emoji">
+				<option value="1" selected>🙂</option>
+				<option value="2">😈</option>
+				<option value="3">👽</option>
+				<option value="4">🤡</option>
+				<option value="5">🥶</option>
+				<option value="6">👤</option>
+				<option value="7">💀</option>
+				<option value="8">😺</option>
+				<option value="9">👁️</option>
+				<option value="10">💩</option>
+				<option value="11">🎃</option>
+				<option value="12">👾</option>
+			</select>
+			<button onclick="start()">Entrar</button>
+		</div><br>
+		<canvas id="lienzo" width="1000" height="700"
+			style="border:1px solid black;"></canvas>
+		<h3>by Omwekiatl 2025</h3>
+	</body>
+	<script src="Avatar.js" defer></script>
+	<script src="logic.js" defer></script>
+</html>
